@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Number Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Pingping's Angpao</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,7 +81,7 @@
         <h1>Happy Chinese New Year! <br>
             ✨🌱🎐🏮🐲🍃🌙🐉🏮💰</h1>
         <label for="name">Your nickname:</label>
-        <input type="text" id="name"><br><br>
+        <input type="text" id="name" maxlength="8"><br><br>
         <button id="generate-btn">Enter</button>
         <h4>身体棒，心情好！恭喜发财！</h4>
         <h6>Good health, good mood! Wishing you prosperity!</h6>
@@ -108,8 +108,8 @@
                 return;
             }
     
-            // Generate a random number between 1 and 300
-            var randomNumber = Math.floor(Math.random() * 300) + 1;
+            // Generate a random number between 1 and 200
+            var randomNumber = Math.floor(Math.random() * 200) + 1;
             
             // Store the name and its corresponding random number
             namesAndNumbers[name] = randomNumber;
@@ -118,28 +118,5 @@
             document.getElementById('result').innerHTML = 'Angpao for <span id="result-name">' + name + '</span>: <span id="result-number">' + randomNumber + '</span> 🧧';
         });
     </script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyCkKVSEJ0VZA1Aw8XLAECYPHNnsVk5hyUg",
-          authDomain: "angpaorandom.firebaseapp.com",
-          projectId: "angpaorandom",
-          storageBucket: "angpaorandom.appspot.com",
-          messagingSenderId: "288602089256",
-          appId: "1:288602089256:web:31edebb69aa27809fb521d",
-          measurementId: "G-WBXJ4YMNV5"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
 </body>
 </html>

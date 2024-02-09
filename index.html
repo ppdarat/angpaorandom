@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #aa381e; /* Change color to #aa381e */
+        }
+
+        h4, h5, h6 {
+            color: #D3D3D3; /* Change color to #D3D3D3 */
+            font-weight: normal; /* Change font weight to normal */
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            margin: 0 10px 10px 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            text-align: center; /* Center text horizontally */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #aa381e;
+            color: #ffb200;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #8c2e16;
+        }
+
+        #result {
+            font-size: 32px; /* Increase font size */
+            margin-top: 40px; /* Increase margin-top */
+            text-align: center; /* Center text horizontally */
+            color: #aa381e; /* Change color to #aa381e */
+        }
+
+        #result-name {
+            font-weight: bold; /* Make the name bold */
+        }
+
+        #result-number {
+            font-weight: bold; /* Make the number bold */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Chinese New Year!!</h1>
+        <h4>身体棒，心情好！恭喜发财！</h4> 
+        <h5>Shēntǐ bàng, xīnqíng hǎo! Gōngxǐ fācái!</h5>
+        <h6>Good health, good mood! Wishing you prosperity!</h6>
+        <label for="name">Your nickname:</label>
+        <input type="text" id="name"><br><br>
+        <button id="generate-btn">Enter</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        // Initialize an empty object to store names and their corresponding random numbers
+        var namesAndNumbers = {};
+    
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            // Retrieve the name entered by the user
+            var name = document.getElementById('name').value.trim();
+            
+            // Check if a name is provided
+            if (!name) {
+                alert('Please enter a name.');
+                return;
+            }
+    
+            // Check if the name has already been used to generate a number
+            if (namesAndNumbers.hasOwnProperty(name)) {
+                alert('This name has already been used to generate a number.');
+                return;
+            }
+    
+            // Generate a random number between 1 and 300
+            var randomNumber = Math.floor(Math.random() * 300) + 1;
+            
+            // Store the name and its corresponding random number
+            namesAndNumbers[name] = randomNumber;
+    
+            // Display the random number with the red envelope emoji
+            document.getElementById('result').innerHTML = 'Angpao for <span id="result-name">' + name + '</span>: <span id="result-number">' + randomNumber + '</span> 🧧';
+        });
+    </script>
+</body>
+</html>

@@ -18,27 +18,28 @@
 
         .container {
             text-align: center;
-            max-width: 600px;
-            padding: 20px;
+            max-width: 400px;
+            padding: 40px;
             background-color: white;
-            border-radius: 10px;
+            border-radius: 35px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #aa381e; /* Change color to #aa381e */
+            color: #8c2e16; /* Change color to #aa381e */
         }
 
         h4, h5, h6 {
             color: #D3D3D3; /* Change color to #D3D3D3 */
             font-weight: normal; /* Change font weight to normal */
+            margin: 10px 10px 10px 10px;
         }
 
         input[type="text"] {
             width: calc(100% - 20px);
-            margin: 0 10px 10px 10px;
+            margin: 10px 10px 0px 10px;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 20px;
             border: 1px solid #ccc;
             box-sizing: border-box;
             text-align: center; /* Center text horizontally */
@@ -48,10 +49,11 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            margin: 0px 10px 25px 10px;
             background-color: #aa381e;
             color: #ffb200;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
         }
 
         button:hover {
@@ -76,13 +78,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Happy Chinese New Year!!</h1>
-        <h4>身体棒，心情好！恭喜发财！</h4> 
-        <h5>Shēntǐ bàng, xīnqíng hǎo! Gōngxǐ fācái!</h5>
-        <h6>Good health, good mood! Wishing you prosperity!</h6>
+        <h1>Happy Chinese New Year! <br>
+            ✨🌱🎐🏮🐲🍃🌙🐉🏮💰</h1>
         <label for="name">Your nickname:</label>
         <input type="text" id="name"><br><br>
         <button id="generate-btn">Enter</button>
+        <h4>身体棒，心情好！恭喜发财！</h4>
+        <h6>Good health, good mood! Wishing you prosperity!</h6>
+        <h5>Pingping always love you guys✨💖</h5>
         <p id="result"></p>
     </div>
     <script>
@@ -115,5 +118,28 @@
             document.getElementById('result').innerHTML = 'Angpao for <span id="result-name">' + name + '</span>: <span id="result-number">' + randomNumber + '</span> 🧧';
         });
     </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCkKVSEJ0VZA1Aw8XLAECYPHNnsVk5hyUg",
+          authDomain: "angpaorandom.firebaseapp.com",
+          projectId: "angpaorandom",
+          storageBucket: "angpaorandom.appspot.com",
+          messagingSenderId: "288602089256",
+          appId: "1:288602089256:web:31edebb69aa27809fb521d",
+          measurementId: "G-WBXJ4YMNV5"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </body>
 </html>

@@ -3,46 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-<!-- HTML Meta Tags -->
-<title>Pingping's Pockets of Delight: Mini Angpao Magic!</title>
-<meta name="description" content="">
-
-<!-- Facebook Meta Tags -->
-<meta property="og:url" content="https://angpaorandom.vercel.app/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pingping's Pockets of Delight: Mini Angpao Magic!">
-<meta property="og:description" content="Grab your adorable surprise mini Angpao!">
-<meta property="og:image" content="https://i.ibb.co/VTBDBBK/Happy-Chinese-New-Year.png">
-
-
+    <title>Pingping's Pockets of Delight: Mini Angpao Magic!</title>
+    <meta name="description" content="">
+    <meta property="og:url" content="https://angpaorandom.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pingping's Pockets of Delight: Mini Angpao Magic!">
+    <meta property="og:description" content="Grab your adorable surprise mini Angpao!">
+    <meta property="og:image" content="https://i.ibb.co/VTBDBBK/Happy-Chinese-New-Year.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff0d9;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow-x: hidden; /* Hide horizontal overflow caused by gradient animation */
+        }
+
+        .gradient-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #ff6d54, #ff6c8e, #FF4B2B, #FF416C);
+            background-size: 400% 400%;
+            animation: gradientAnimation 3s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .container {
             text-align: center;
             max-width: 400px;
             padding: 40px;
+            margin: 20px;
             background-color: white;
             border-radius: 35px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .poppins-medium {
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .poppins-bold {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
         h1 {
-            color: #8c2e16; /* Change color to #aa381e */
+            color: #ff4b2b; /* Change color to #aa381e */
+            font-size: 36px; /* Change font size */
         }
 
         h4, h5, h6 {
-            color: #D3D3D3; /* Change color to #D3D3D3 */
+            color: #808080; /* Change color to #D3D3D3 */
             font-weight: normal; /* Change font weight to normal */
             margin: 10px 10px 10px 10px;
         }
@@ -61,22 +97,29 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            margin: 0px 10px 25px 10px;
-            background-color: #aa381e;
-            color: #ffb200;
+            margin: 0px 10px 5px 10px;
+            background-color: #ff4b2b;
+            color: #ffcf5f;
             border: none;
             border-radius: 20px;
         }
 
         button:hover {
-            background-color: #8c2e16;
+            background-color: #ac2e18;
         }
 
         #result {
-            font-size: 32px; /* Increase font size */
-            margin-top: 40px; /* Increase margin-top */
+            font-size: 24px; /* Reduce font size */
             text-align: center; /* Center text horizontally */
-            color: #aa381e; /* Change color to #aa381e */
+            color: #ff4b2b; /* Change color to #aa381e */
+            font-family: "Poppins", sans-serif; /* Change font family */
+            font-weight: 500; /* Change font weight */
+            font-style: normal; /* Change font style */
+        }
+
+        #result-prefix {
+            font-size: 20px; /* Reduce font size */
+            color: #ff7c64; /* Change color to #ff7c64 */
         }
 
         #result-name {
@@ -86,49 +129,150 @@
         #result-number {
             font-weight: bold; /* Make the number bold */
         }
+
+        #random-wish {
+            font-size: 14px; /* Reduce font size */
+            margin-top: 10px; /* Adjust margin-top */
+            text-align: center;
+            color: #ff7c64; /* Change color to #ff7c64 */
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 400px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 35px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+
+        .close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity here */
+            z-index: 9998; /* Ensure the overlay is behind the popup */
+            display: none; /* Initially hide the overlay */
+        }
     </style>
 </head>
 <body>
+    <!-- Background Music -->
+    <audio id="background-music" src="https://firebasestorage.googleapis.com/v0/b/angpaorandom.appspot.com/o/flutebg.mp3?alt=media&token=fcced398-69bf-4b0d-883b-e0911bb5db76" loop></audio>
+
+    <!-- Animated Gradient Background -->
+    <div class="gradient-background"></div>
+
+    <!-- Main Content -->
     <div class="container">
-        <h1>Happy Chinese New Year! <br>
-            ✨🌱🎐🏮🐲🍃🌙🐉🏮💰</h1>
-        <label for="name">Your nickname:</label>
-        <input type="text" id="name" maxlength="8"><br><br>
-        <button id="generate-btn">Enter</button>
-        <h4>身体棒，心情好！恭喜发财！</h4>
-        <h6>Good health, good mood! Wishing you prosperity!</h6>
-        <h5>Pingping always love you guys✨💖</h5>
+        <h1 class="poppins-bold">Mini Angpao Magic!<br>
+            ✨🌱🎐🐲🌙🏮💰</h1>
+        <label class="poppins-medium" for="name">Tell me your name</label>
+        <input class="poppins-medium" type="text" id="name" maxlength="8"><br><br>
+        <button class="poppins-medium" id="generate-btn">Make a wish!</button>
         <p id="result"></p>
+        <p id="random-wish" class="poppins-medium"></p>
+        <h5 class="poppins-medium">Pingping always love you guys✨💖</h5>
     </div>
+
+    <!-- Welcome Pop-up -->
+    <div id="welcome-popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 class="poppins-bold">✨Happy Chinese New Year!✨</h2>
+        <h5 class="poppins-medium">Welcome to Pingping's Mini Angpao Magic!💰🧧 <br>
+            Enjoy your Mini Angpao experience!</h5>
+        <button class="poppins-medium" onclick="startBackgroundMusic()">Let's go!</button>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- JavaScript -->
     <script>
-        // Initialize an empty object to store names and their corresponding random numbers
-        var namesAndNumbers = {};
-    
+        var wishes = [
+            "Wishing you joy, prosperity, and success!\n祝你快乐、繁荣、成功！",
+            "May your dreams come true this year!\n愿你今年梦想成真！",
+            "Good luck and happiness in the Year of the Tiger!\n恭喜发财！",
+            "May each day bring you luck, joy, and prosperity!\n愿每一天都带给你好运、快乐和繁荣！",
+            "Warm wishes for a prosperous and happy Chinese New Year!\n新年快乐！",
+            "May this year be filled with happiness, luck, and good fortune!\n愿今年充满幸福、好运和好运！",
+            "May your days be as glittery as a diamond, may your friends be as good as gold, may your heart stay as green as an emerald, and may your soul remain as pure as a pearl.\n愿你的日子像钻石一样闪耀，愿你的朋友像黄金一样珍贵，愿你的心像翡翠一样绿色，愿你的灵魂像珍珠一样纯洁。",
+            "May you have a prosperous journey ahead!\n愿你前程似锦！",
+            "May you be blessed with all good things!\n愿你得到一切好东西！",
+            "May your home be filled with happiness and prosperity!\n愿你的家充满幸福和繁荣！",
+            "Wishing you a year filled with love and laughter!\n祝你新的一年充满爱和笑声！",
+            "May your life be as colorful as the fireworks in the sky!\n愿你的生活像天空中的烟花一样多姿多彩！",
+            "Wishing you peace, love, and laughter!\n祝你平安、爱和笑声！",
+            "May the Year of the Tiger bring you strength, courage, and wisdom!\n祝虎年带给你力量、勇气和智慧！",
+            "Wishing you a year filled with amazing accomplishments and blessings!\n祝你新的一年充满了惊人的成就和祝福！"
+        ];
+
+        var usedNames = [];
+
+        // Display the welcome pop-up when the page loads
+        window.onload = function() {
+            document.getElementById('welcome-popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block'; // Show the overlay
+        }
+
+        function closePopup() {
+            document.getElementById('welcome-popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none'; // Hide the overlay
+        }
+
+        function startBackgroundMusic() {
+            document.getElementById('background-music').play();
+            closePopup(); // Close the welcome pop-up after starting the music
+        }
+
         document.getElementById('generate-btn').addEventListener('click', function() {
-            // Retrieve the name entered by the user
             var name = document.getElementById('name').value.trim();
-            
-            // Check if a name is provided
             if (!name) {
                 alert('Please enter a name.');
                 return;
             }
-    
-            // Check if the name has already been used to generate a number
-            if (namesAndNumbers.hasOwnProperty(name)) {
-                alert('This name has already been used to generate a number.');
+            
+            if (usedNames.includes(name)) {
+                alert('Name already used. Please enter a different name.');
                 return;
             }
-    
-            // Generate a random number between 1 and 200
+
+            usedNames.push(name);
+
             var randomNumber = Math.floor(Math.random() * 200) + 1;
+            document.getElementById('result').innerHTML = '<span id="result-prefix" class="poppins-medium">Angpao for </span><span id="result-name">' + name + '</span>: <span id="result-number">' + randomNumber + '</span> 🧧';
             
-            // Store the name and its corresponding random number
-            namesAndNumbers[name] = randomNumber;
-    
-            // Display the random number with the red envelope emoji
-            document.getElementById('result').innerHTML = 'Angpao for <span id="result-name">' + name + '</span>: <span id="result-number">' + randomNumber + '</span> 🧧';
+            displayRandomWish();
+            playSoundEffect();
         });
+
+        function displayRandomWish() {
+            var randomIndex = Math.floor(Math.random() * wishes.length);
+            var randomWish = wishes[randomIndex];
+            var wishParts = randomWish.split('\n');
+            var wishHTML = wishParts[0] + '<br>' + wishParts[1];
+            document.getElementById('random-wish').innerHTML = wishHTML;
+        }
+
+        function playSoundEffect() {
+            var audio = new Audio('https://firebasestorage.googleapis.com/v0/b/angpaorandom.appspot.com/o/Dec.mp3?alt=media&token=716fc777-dff2-4e20-803d-20aa246628b1');
+            audio.play();
+        }
     </script>
 </body>
 </html>

@@ -144,9 +144,10 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            max-width: 400px;
+            max-width: 600px;
+            min-width: 250px;
             background-color: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 35px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 9999;
@@ -195,7 +196,7 @@
         <span class="close" onclick="closePopup()">&times;</span>
         <h2 class="poppins-bold">✨Happy Chinese New Year!✨</h2>
         <h5 class="poppins-medium">Welcome to Pingping's Mini Angpao Magic!💰🧧 <br>
-            Enjoy your Mini Angpao experience!</h5>
+            Enjoy your mini angpao experience!</h5>
         <button class="poppins-medium" onclick="startBackgroundMusic()">Let's go!</button>
     </div>
 
@@ -240,7 +241,14 @@
             closePopup(); // Close the welcome pop-up after starting the music
         }
 
-        document.getElementById('generate-btn').addEventListener('click', function() {
+        document.getElementById('generate-btn').addEventListener('click', generateWish);
+        document.getElementById('name').addEventListener('keypress', function(event) {
+            if (event.keyCode === 13) { // Check if Enter key is pressed
+                generateWish();
+            }
+        });
+
+        function generateWish() {
             var name = document.getElementById('name').value.trim();
             if (!name) {
                 alert('Please enter a name.');
@@ -259,7 +267,7 @@
             
             displayRandomWish();
             playSoundEffect();
-        });
+        }
 
         function displayRandomWish() {
             var randomIndex = Math.floor(Math.random() * wishes.length);
